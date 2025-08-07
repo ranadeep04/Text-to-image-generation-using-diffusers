@@ -1,0 +1,17 @@
+!pip install diffusers transformers torch
+
+ from diffusers import StableDiffusionPipeline 
+import torch 
+device = "cuda" if torch.cuda.is_available() else "cpu" 
+pipe = StableDiffusionPipeline.from_pretrained(
+ "CompVis/stable-diffusion-v1-4", 
+torch_dtype=torch.float32 )
+.to(device)
+ prompt = "A man standing on the road" 
+ image = pipe(prompt).images[0] 
+image.save("generated_image.png") 
+image. Show() 
+
+from google.colab 
+import files 
+files.download("generated_image.png") 
